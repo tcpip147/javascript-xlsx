@@ -1,0 +1,40 @@
+<?js
+var data = obj;
+var self = this;
+var nativeobject = ["object", "number", "array", "string", "void", "anything"];
+?>
+<?js if (data.kind !== 'module' && !data.hideconstructor) { ?>
+    <?js if (data.kind !== 'namespace') { ?>
+    <td>
+        <?js if (data.returns && returns.length) { ?>
+            <?js if (data.returns[0].type) { ?>
+                <?js if (nativeobject.indexOf(data.returns[0].type.names[0].toLowerCase()) == -1) { ?>
+                    <a href="module-<?js=data.returns[0].type.names[0] ?>.html"><?js=data.returns[0].type.names[0] ?></a>
+                <?js } else { ?>
+                    <?js=data.returns[0].type.names[0] ?>
+                <?js } ?>
+            <?js } ?>
+        <?js } ?>
+    </td>
+    <?js var paramstr = ""; ?>
+    <?js for(var i = 0; i < data.params.length; i++) { ?>
+        <?js paramstr += (i > 0 ? ", ": "") ?>
+        <?js if (nativeobject.indexOf(data.params[i].type.names[0].toLowerCase()) == -1) { ?>
+            <?js paramstr += '<a href="module-'; ?>
+            <?js paramstr += data.params[i].type.names[0]; ?>
+            <?js paramstr += '.html">'; ?>
+            <?js paramstr += data.params[i].type.names[0] ?>
+            <?js paramstr += '</a>'; ?>
+        <?js } else { ?>
+            <?js paramstr += data.params[i].type.names[0] ?>
+        <?js } ?>
+        <?js paramstr += " " + data.params[i].name; ?>
+    <?js } ?>
+    <td class="name"><a href="#<?js= id ?>"><?js= name ?></a>(<?js= paramstr ?>)</td>
+    <td>
+    <?js if (data.summary) { ?>
+        <?js= summary ?>
+    <?js } ?>
+    </td>
+    <?js } ?>
+<?js } ?>

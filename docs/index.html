@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><p>이 프로젝트는 ApachePOI 인터페이스를 참고하여 만들어졌습니다.</p>
+<p>현재는 텍스트 수정 및 일부 스타일만 구현되어 있습니다.</p>
+<p>지속적으로 기능을 추가할 예정입니다.</p>
+<h3>Getting Stared</h3>
+<pre class="prettyprint source"><code>&lt;script src=&quot;javascript-xlsx.js&quot;>&lt;/script>
+</code></pre>
+<pre class="prettyprint source"><code>&lt;!-- IE11 브라우저 호환 버전 -->
+&lt;script src=&quot;javascript-xlsx-ie11.js&quot;>&lt;/script>
+</code></pre>
+<h3>Example</h3>
+<pre class="prettyprint source"><code>var workbook = JavascriptXlsx.createWorkbook();
+var sheet = workbook.createSheet(&quot;Sheet1&quot;);
+
+for (var r = 0; r &lt; 10; r++) {
+    var row = sheet.createRow(r);
+    var style = workbook.createCellStyle({
+        font: {
+            size: 10 + r
+        }
+    });
+    for (var c = 0; c &lt; 5; c++) {
+        var cell = row.createCell(c);
+        cell.setCellValue(&quot;row&quot; + r + &quot; : col&quot; + c);
+        cell.setCellStyle(style);
+    }
+}
+
+for (var c = 0; c &lt; 5; c++) {
+    sheet.setColumnWidth(c, 30);
+}
+
+workbook.write(&quot;example.xlsx&quot;);
+</code></pre>
+<h3>API</h3>
+<p><a href="https://tcpip147.github.io/javascript-xlsx/index.html">API Reference</a>를 참조하십시요.</p>
+<h3 id="cellStyleAttributes">CellStyle Attributes</h3>
+<pre class="prettyprint source"><code>{
+    /* 표시형식 */
+    format: string,
+    /* 글꼴 */
+    font: {
+        name: string // 글꼴명
+        size: number, // 크기
+        bold: boolean, // 굵게
+        italic: boolean, // 기울임꼴
+        strike: boolean, // 취소선
+        color: [0-9A-F]{8}, // 색상
+        /* 첨자 */
+        script: superscript // 위 첨자
+              | subscript // 아래 첨자
+        /* 밑줄 */
+        underline: none // 없음
+                 | single // 실선
+                 | double // 이중 실선
+                 | singleAccounting // 실선(회계용)
+                 | doubleAccounting // 이중 실선(회계용)
+    },
+    /* 채우기 */
+    fill: {
+        pattern : {
+            foregroundColor: [0-9A-F]{8}, // 무늬색
+            backgroundColor: [0-9A-F]{8}, // 배경색
+            /* 무늬스타일 */
+            type: none // 없음
+                | solid // 단색
+                | darkGray // 75% 회색
+                | mediumGray // 50% 회색
+                | lightGray // 25% 회색
+                | gray125 // 12.5% 회색
+                | gray0625 // 6.25% 회색
+                | darkHorizontal // 가로줄
+                | darkVertical // 세로줄
+                | darkDown // 역대각선줄
+                | darkUp // 대각선줄
+                | darkGrid // 대각선교차무늬
+                | darkTrellis // 굵은 실선 대각선교차무늬
+                | lightHorizontal // 가는 실선 가로줄
+                | lightVertical // 가는 실선 세로줄
+                | lightDown // 가는 실선 역대각선줄
+                | lightUp // 가는 실선 대각선줄
+                | lightGrid // 가는 실선 가로교차무늬
+                | lightTrellis // 가는 실선 대각선교차무늬
+        },
+        /* 채우기 효과 */
+        gradient : {
+            // 미구현
+        }
+    },
+    /* 테두리 */
+    border: {
+        left: {
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
+            color: [0-9A-F]{8}
+        },
+        right: {
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
+            color: [0-9A-F]{8}
+        },
+        bottom: {
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
+            color: [0-9A-F]{8}
+        },
+        top: {
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
+            color: [0-9A-F]{8}
+        },
+        /* 대각선 */
+        diagonal: {
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
+            color: [0-9A-F]{8},
+            direction: up|down
+        }
+    },
+    /* 맞춤 */
+    alignment: {
+        /* 가로정렬 */
+        horizontal: general // 일반
+                  | left // 왼쪽(들여쓰기)
+                  | center // 가운데
+                  | right // 오른쪽(들여쓰기)
+                  | fill // 채우기
+                  | justify // 양쪽맞춤
+                  | centerContinuous // 선택영역의 가운데로
+                  | distributed, // 균등분할(들여쓰기)
+        /* 세로정렬 */
+        vertical: top // 위쪽
+                | center // 가운데
+                | bottom // 아래쪽
+                | justify // 양쪽맞춤
+                | distributed // 균등분할
+    }
+}
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Cell.html">Cell</a></li><li><a href="module-CellStyle.html">CellStyle</a></li><li><a href="module-Row.html">Row</a></li><li><a href="module-Sheet.html">Sheet</a></li><li><a href="module-Workbook.html">Workbook</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 17 2023 19:07:23 GMT+0900 (대한민국 표준시)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

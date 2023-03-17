@@ -44,9 +44,9 @@ workbook.write("example.xlsx");
 
 ### API
 
-아래 링크를 참조하십시요.
+<a href="https://tcpip147.github.io/javascript-xlsx/index.html">API Reference</a>를 참조하십시요.
 
-### CellStyle Attributes
+<h3 id="cellStyleAttributes">CellStyle Attributes</h3>
 
 ```
 {
@@ -104,29 +104,74 @@ workbook.write("example.xlsx");
     /* 테두리 */
     border: {
         left: {
-            style: thin|medium|dashed|dotted|thick|double|hair|mediumDashed|dashDotDot|
-                mediumDashDotDot|slantDashDot,
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
             color: [0-9A-F]{8}
         },
         right: {
-            style: thin|medium|dashed|dotted|thick|double|hair|mediumDashed|dashDotDot|
-                mediumDashDotDot|slantDashDot,
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
             color: [0-9A-F]{8}
         },
         bottom: {
-            style: thin|medium|dashed|dotted|thick|double|hair|mediumDashed|dashDotDot|
-                mediumDashDotDot|slantDashDot,
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
             color: [0-9A-F]{8}
         },
         top: {
-            style: thin|medium|dashed|dotted|thick|double|hair|mediumDashed|dashDotDot|
-                mediumDashDotDot|slantDashDot,
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
             color: [0-9A-F]{8}
         },
         /* 대각선 */
         diagonal: {
-            style: thin|medium|dashed|dotted|thick|double|hair|mediumDashed|dashDotDot|
-                mediumDashDotDot|slantDashDot,
+            style: thin
+                 | medium
+                 | dashed
+                 | dotted
+                 | thick
+                 | double
+                 | hair
+                 | mediumDashed
+                 | dashDotDot
+                 | mediumDashDotDot
+                 | slantDashDot,
             color: [0-9A-F]{8},
             direction: up|down
         }

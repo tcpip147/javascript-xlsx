@@ -1,11 +1,11 @@
 {
   "name": "javascript-xlsx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production && webpack --mode production --env ie11",
-    "jsdoc": "jsdoc -c jsdoc.conf"
+    "jsdoc": "jsdoc -c jsdoc.conf README.md"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
@@ -17,7 +17,6 @@
     "core-js": "^3.29.1",
     "html-webpack-plugin": "^5.5.0",
     "jsdoc": "^4.0.2",
-    "jsdoc-to-markdown": "^8.0.0",
     "source-map-loader": "^4.0.1",
     "terser-webpack-plugin": "^5.3.7",
     "webpack": "^5.75.0",

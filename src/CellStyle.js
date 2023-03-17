@@ -1,5 +1,9 @@
 import _ from 'lodash';
 
+/**
+ * <a href="index.html#cellStyleAttributes">Cell style attributes</a>를 참조하세요.
+ * @module CellStyle
+ */
 export default class CellStyle {
 
     // TODO: Styles have to be more implemented.

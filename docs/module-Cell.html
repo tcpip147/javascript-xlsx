@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: Cell</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: Cell</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <table class='method-tbl'>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-CellStyle.html">CellStyle</a>
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getCellStyle">getCellStyle</a>()</td>
+    <td>
+    
+        셀에 적용된 스타일을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getCellValue">getCellValue</a>()</td>
+    <td>
+    
+        셀의 값을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getColumnIndex">getColumnIndex</a>()</td>
+    <td>
+    
+        셀의 Index를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    String
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getReference">getReference</a>()</td>
+    <td>
+    
+        셀의 Reference를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-Row.html">Row</a>
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getRow">getRow</a>()</td>
+    <td>
+    
+        셀이 속한 행을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getRowIndex">getRowIndex</a>()</td>
+    <td>
+    
+        셀이 속한 행의 Index를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-Sheet.html">Sheet</a>
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getSheet">getSheet</a>()</td>
+    <td>
+    
+        셀이 속한 시트를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#setAsActiveCell">setAsActiveCell</a>()</td>
+    <td>
+    
+        셀을 선택한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setCellStyle">setCellStyle</a>(Object style)</td>
+    <td>
+    
+        셀에 스타일을 적용한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setCellValue">setCellValue</a>(Anything value)</td>
+    <td>
+    
+        셀의 값을 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+        </table>
+        
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getCellStyle"><a href="module-CellStyle.html">CellStyle</a> getCellStyle()</h4>
+    
+
+
+
+    셀에 적용된 스타일을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(0);var style = workbook.createCellStyle({    font: {        size: 20    },    border: {        left: {            style: "thin",            color: "FF0000"        }    }});cell.setCellValue("Hello");cell.setCellStyle(style);console.log(cell.getCellStyle() === style); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getCellValue">Void getCellValue()</h4>
+    
+
+
+
+    셀의 값을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(0);cell.setCellValue("Hello");console.log(cell.getCellValue()); // Hello</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getColumnIndex">Number getColumnIndex()</h4>
+    
+
+
+
+    셀의 Index를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(3);console.log(cell.getColumnIndex()); // 3</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getReference">String getReference()</h4>
+    
+
+
+
+    셀의 Reference를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(3);console.log(cell.getReference()); // D1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getRow"><a href="module-Row.html">Row</a> getRow()</h4>
+    
+
+
+
+    셀이 속한 행을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(3);console.log(row === cell.getRow()); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getRowIndex">Number getRowIndex()</h4>
+    
+
+
+
+    셀이 속한 행의 Index를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);console.log(cell.getRowIndex()); // 1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getSheet"><a href="module-Sheet.html">Sheet</a> getSheet()</h4>
+    
+
+
+
+    셀이 속한 시트를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);console.log(sheet === cell.getSheet()); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="setAsActiveCell">Void setAsActiveCell()</h4>
+    
+
+
+
+    셀을 선택한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);cell.setAsActiveCell();console.log(sheet.getActiveCell() === cell.getReference()); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setCellStyle">Void setCellStyle(Object style)</h4>
+    
+
+
+
+    셀에 스타일을 적용한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(0);var style = workbook.createCellStyle({    font: {        size: 20    },    border: {        left: {            style: "thin",            color: "FF0000"        }    }});cell.setCellValue("Hello");cell.setCellStyle(style);console.log(cell.getCellStyle() === style); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setCellValue">Void setCellValue(Anything value)</h4>
+    
+
+
+
+    셀의 값을 변경한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(0);cell.setCellValue("Hello");console.log(cell.getCellValue()); // Hello</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Cell.html">Cell</a></li><li><a href="module-CellStyle.html">CellStyle</a></li><li><a href="module-Row.html">Row</a></li><li><a href="module-Sheet.html">Sheet</a></li><li><a href="module-Workbook.html">Workbook</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 17 2023 19:07:23 GMT+0900 (대한민국 표준시)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

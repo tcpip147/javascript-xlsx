@@ -10,17 +10,15 @@ import IndexedLinkedList from './IndexedLinkedList';
 import Sheet from './Sheet';
 import CellStyle from './CellStyle';
 
-/** Class Workbook. */
+/**
+ * @module Workbook
+ */
 export default class Workbook {
 
     #maxRId;
     #maxSheetId;
     #maxSheetNameId;
 
-    /**
-     * 
-     * @param {object} option 
-     */
     constructor(option) {
         option = option || {};
         const data = option.data || DefaultXlsx.document;
@@ -133,12 +131,35 @@ export default class Workbook {
         // TODO: commit
     }
 
+    /**
+     * @summary 셀 스타일을 생성한다.
+     * @example 
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * var cell = row.createCell(0);
+     * var style = workbook.createCellStyle({
+     *     font: {
+     *         size: 20
+     *     },
+     *     border: {
+     *         left: {
+     *             style: "thin",
+     *             color: "FF0000"
+     *         }
+     *     }
+     * });
+     * cell.setCellValue("Hello");
+     * cell.setCellStyle(style);
+     * @param {Object}
+     * @returns {CellStyle}
+     */
     createCellStyle(styles) {
         const style = new CellStyle({
             workbook: this
         });
         style.createNodes(styles);
-        this.styles[style.styleId] = style;
+        this.styles.add(style.styleId, style);
         return style;
     }
 
@@ -158,6 +179,14 @@ export default class Workbook {
         // TODO: createName
     }
 
+    /**
+     * @summary 시트를 생성한다.
+     * @example 
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * @param {String}
+     * @returns {Sheet}
+     */
     createSheet(sheetname) {
         if (sheetname == null) {
             throw "Invalid sheetname";
@@ -213,6 +242,17 @@ export default class Workbook {
         return sheet;
     }
 
+    /**
+     * @summary 현재 활성화 된 시트의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * workbook.createSheet("Sheet1");
+     * workbook.createSheet("Sheet2");
+     * workbook.setActiveSheet(1);
+     * var index = workbook.getActiveSheetIndex();
+     * console.log(index); // 1
+     * @returns {Number}
+     */
     getActiveSheetIndex() {
         return Number(this.xlsx.getNode("xl/workbook.xml|workbook|bookViews|workbookView|@_activeTab"));
     }
@@ -309,36 +349,83 @@ export default class Workbook {
         // TODO: getSharedStringSource
     }
 
+    /**
+     * @summary 이름으로 시트를 가져온다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * var sheet = workbook.getSheet("Sheet2");
+     * console.log(sheet2 === sheet); // true
+     * @param {String}
+     * @returns {Sheet}
+     */
     getSheet(name) {
-        return this.sheets.get(name).value;
-    }
-
-    getSheetAt(index) {
-        return this.getSheet(this.getSheetName(index));
-    }
-
-    getSheetIndex(nameOrSheet) {
-        let index = -1;
-        if (typeof nameOrSheet == "string") {
-            this.sheets.each((key, value) => {
-                index++;
-                if (nameOrSheet == key) {
-                    return index;
-                }
-            });
-        } else {
-            this.sheets.each((key, value) => {
-                index++;
-                if (nameOrSheet == value) {
-                    return index;
-                }
-            });
+        const sheet = this.sheets.get(name);
+        if (sheet != null) {
+            return sheet.value;
         }
+        return undefined;
+    }
+
+    /**
+     * @summary Index로 시트를 가져온다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * var sheet = workbook.getSheetAt(1);
+     * console.log(sheet2 === sheet); // true
+     * @param {Number}
+     * @returns {Sheet}
+     */
+    getSheetAt(index) {
+        const sheetname = this.getSheetName(index);
+        if (sheetname != null) {
+            return this.getSheet(sheetname);
+        }
+        return undefined;
+    }
+
+    /**
+     * @summary 시트의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * var index = workbook.getSheetIndex(sheet2);
+     * console.log(index); // 1
+     * @param {Sheet}
+     * @returns {Number}
+     */
+    getSheetIndex(sheet) {
+        let index = -1;
+        this.sheets.each((key, value) => {
+            index++;
+            if (sheet == value) {
+                return index;
+            }
+        });
         return index;
     }
 
+    /**
+     * @summary 시트의 이름을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * var name = workbook.getSheetName(1);
+     * console.log(name); // Sheet2
+     * @param {Number}
+     * @returns {String}
+     */
     getSheetName(index) {
-        return this.xlsx.getNodes("xl/workbook.xml|workbook|sheets|sheet")[index]["@_name"];
+        const xmlSheet = this.xlsx.getNodes("xl/workbook.xml|workbook|sheets|sheet")[index];
+        if (xmlSheet != null) {
+            return xmlSheet["@_name"];
+        }
+        return undefined;
     }
 
     getSheetVisibility(index) {
@@ -442,7 +529,19 @@ export default class Workbook {
         // TODO: removePrintArea
     }
 
+    /**
+     * @summary 시트를 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * workbook.removeSheetAt(0);
+     * console.log(workbook.getSheetAt(0) === sheet2);
+     * @param {Number}
+     * @returns {String}
+     */
     removeSheetAt(index) {
+        const sheetname = this.getSheetName(index);
         const sheet = this.getSheetAt(index);
         const rels = this.xlsx.getNodes("xl/_rels/workbook.xml.rels|Relationships|Relationship");
         const removing = _.find(rels, { "@_Id": sheet.xmlRel["@_Id"] });
@@ -450,8 +549,20 @@ export default class Workbook {
         this.xlsx.removeNode("xl/workbook.xml|workbook|sheets|sheet", { "@_r:id": removing["@_Id"] })
         this.xlsx.removeNode("[Content_Types].xml|Types|Override", { "@_PartName": "/xl/" + removing["@_Target"] })
         this.xlsx.removeNode("xl/_rels/workbook.xml.rels|Relationships|Relationship", { "@_Id": removing["@_Id"] });
+        this.sheets.remove(sheetname);
     }
 
+    /**
+     * @summary 시트를 활성화 한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * workbook.createSheet("Sheet1");
+     * workbook.createSheet("Sheet2");
+     * workbook.setActiveSheet(1);
+     * var index = workbook.getActiveSheetIndex();
+     * console.log(index); // 1
+     * @returns {Void}
+     */
     setActiveSheet(index) {
         this.xlsx.setNode("xl/workbook.xml|workbook|bookViews|workbookView|@_activeTab", index.toString());
     }
@@ -556,6 +667,15 @@ export default class Workbook {
         // TODO: validateWorkbookPassword
     }
 
+    /**
+     * @summary 엑셀파일을 출력한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * workbook.createSheet("Sheet1");
+     * workbook.write("example.xlsx");
+     * @param {String}
+     * @returns {Void}
+     */
     write(filename) {
         const contents = this.#build();
         const zip = new JSZip();

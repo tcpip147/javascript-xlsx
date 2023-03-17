@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: Sheet</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: Sheet</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <table class='method-tbl'>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#addMergedRegion">addMergedRegion</a>(String region)</td>
+    <td>
+    
+        셀 병합을 실행한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-Row.html">Row</a>
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#createRow">createRow</a>(Number rowIndex)</td>
+    <td>
+    
+        행을 추가한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    String
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getActiveCell">getActiveCell</a>()</td>
+    <td>
+    
+        선택된 셀을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#getColumnWidth">getColumnWidth</a>(Number columnIndex)</td>
+    <td>
+    
+        열의 너비를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getDefaultColumnWidth">getDefaultColumnWidth</a>()</td>
+    <td>
+    
+        열의 너비 기본값을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getDefaultRowHeight">getDefaultRowHeight</a>()</td>
+    <td>
+    
+        행의 높이 기본값을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getFirstRowNum">getFirstRowNum</a>()</td>
+    <td>
+    
+        시트에 존재하는 첫번째 행의 Index를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Number
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getLastRowNum">getLastRowNum</a>()</td>
+    <td>
+    
+        시트에 존재하는 마지막 행의 Index를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-Row.html">Row</a>
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#getRow">getRow</a>(Number rowIndex)</td>
+    <td>
+    
+        시트를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    String
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getSheetName">getSheetName</a>()</td>
+    <td>
+    
+        시트명을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#removeRow">removeRow</a>(Number rowIndex)</td>
+    <td>
+    
+        행을 삭제한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    <a href="module-Cell.html">Cell</a>
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#setActiveCell">setActiveCell</a>()</td>
+    <td>
+    
+        셀을 선택한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setColumnWidth">setColumnWidth</a>(Number columnIndex, Number width)</td>
+    <td>
+    
+        열의 너비를 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setDefaultColumnWidth">setDefaultColumnWidth</a>(Number width)</td>
+    <td>
+    
+        열의 너비 기본값을 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setDefaultRowHeight">setDefaultRowHeight</a>(Number height)</td>
+    <td>
+    
+        행의 높이 기본값을 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setZoom">setZoom</a>(Number scale)</td>
+    <td>
+    
+        시트의 확대 비율을 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+        </table>
+        
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="addMergedRegion">Void addMergedRegion(String region)</h4>
+    
+
+
+
+    셀 병합을 실행한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion("A1:B3");</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="createRow"><a href="module-Row.html">Row</a> createRow(Number rowIndex)</h4>
+    
+
+
+
+    행을 추가한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getActiveCell">String getActiveCell()</h4>
+    
+
+
+
+    선택된 셀을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setActiveCell("A1");console.log(sheet.getActiveCell()); // A1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="getColumnWidth">Void getColumnWidth(Number columnIndex)</h4>
+    
+
+
+
+    열의 너비를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setColumnWidth(1, 100);console.log(sheet.getColumnWidth(1)); // 100</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getDefaultColumnWidth">Number getDefaultColumnWidth()</h4>
+    
+
+
+
+    열의 너비 기본값을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setDefaultColumnWidth(100);console.log(sheet.getDefaultColumnWidth()); // 100</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getDefaultRowHeight">Number getDefaultRowHeight()</h4>
+    
+
+
+
+    행의 높이 기본값을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setDefaultRowHeight(50);console.log(sheet.getDefaultRowHeight()); // 50</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getFirstRowNum">Number getFirstRowNum()</h4>
+    
+
+
+
+    시트에 존재하는 첫번째 행의 Index를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.createRow(4);sheet.createRow(3);sheet.createRow(5);console.log(sheet.getFirstRowNum()); // 3</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getLastRowNum">Number getLastRowNum()</h4>
+    
+
+
+
+    시트에 존재하는 마지막 행의 Index를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.createRow(4);sheet.createRow(5);sheet.createRow(3);console.log(sheet.getLastRowNum()); // 5</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="getRow"><a href="module-Row.html">Row</a> getRow(Number rowIndex)</h4>
+    
+
+
+
+    시트를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);console.log(row === sheet.getRow(0)); // true</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getSheetName">String getSheetName()</h4>
+    
+
+
+
+    시트명을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var sheetname = sheet.getSheetName(0);console.log(sheetname); // Sheet1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="removeRow">Void removeRow(Number rowIndex)</h4>
+    
+
+
+
+    행을 삭제한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);sheet.removeRow(0);console.log(sheet.getRow(0)); // undefined</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+                
+                
+                
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="setActiveCell"><a href="module-Cell.html">Cell</a> setActiveCell()</h4>
+    
+
+
+
+    셀을 선택한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setActiveCell("A1");console.log(sheet.getActiveCell()); // A1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setColumnWidth">Void setColumnWidth(Number columnIndex, Number width)</h4>
+    
+
+
+
+    열의 너비를 변경한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setColumnWidth(1, 100);console.log(sheet.getColumnWidth(1)); // 100</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setDefaultColumnWidth">Void setDefaultColumnWidth(Number width)</h4>
+    
+
+
+
+    열의 너비 기본값을 변경한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setDefaultColumnWidth(100);console.log(sheet.getDefaultColumnWidth()); // 100</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setDefaultRowHeight">Void setDefaultRowHeight(Number height)</h4>
+    
+
+
+
+    행의 높이 기본값을 변경한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setDefaultRowHeight(50);console.log(sheet.getDefaultRowHeight()); // 50</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setZoom">Void setZoom(Number scale)</h4>
+    
+
+
+
+    시트의 확대 비율을 변경한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.setZoom(50);</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Cell.html">Cell</a></li><li><a href="module-CellStyle.html">CellStyle</a></li><li><a href="module-Row.html">Row</a></li><li><a href="module-Sheet.html">Sheet</a></li><li><a href="module-Workbook.html">Workbook</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 17 2023 19:07:23 GMT+0900 (대한민국 표준시)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

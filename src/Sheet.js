@@ -4,6 +4,9 @@ import Xlsx from "./Xlsx";
 import Row from "./Row";
 import Utils from "./Utils";
 
+/**
+ * @module Sheet
+ */
 export default class Sheet {
 
     constructor(option) {
@@ -42,6 +45,15 @@ export default class Sheet {
         // TODO: addIgnoredErrors
     }
 
+    /**
+     * @summary 셀 병합을 실행한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.addMergedRegion("A1:B3");
+     * @param {String}
+     * @returns {Void}
+     */
     addMergedRegion(region) {
         this.xlsx.afterNodeKey("worksheet|sheetData", "mergeCells");
         this.xlsx.appendNode("worksheet|mergeCells|mergeCell", {
@@ -93,6 +105,15 @@ export default class Sheet {
         // TODO: createPivotTable
     }
 
+    /**
+     * @summary 행을 추가한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * @param {Number}
+     * @returns {Row}
+     */
     createRow(rowIndex) {
         const xmlRow = {
             "@_r": (Number(rowIndex) + 1).toString()
@@ -127,18 +148,17 @@ export default class Sheet {
         // TODO: findEndOfRowOutlineGroup
     }
 
+    /**
+     * @summary 선택된 셀을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setActiveCell("A1");
+     * console.log(sheet.getActiveCell()); // A1
+     * @returns {String}
+     */
     getActiveCell() {
-        const ref = this.xlsx.getNode("worksheet|sheetViews|sheetView|selection|@_activeCell");
-        if (ref == null) {
-            const row = this.rows.get(0);
-            if (row != null) {
-                return row.value.cells.get(0);
-            }
-        } else {
-            const match = ref.match(/([A-Z]+)([0-9]+)/);
-            return this.rows.get(match[2] - 1).value.cells.get(Utils.alphabetToIndex(match[1]) - 1).value;
-        }
-        return undefined;
+        return this.xlsx.getNode("worksheet|sheetViews|sheetView|selection|@_activeCell");
     }
 
     getAutobreaks() {
@@ -169,11 +189,21 @@ export default class Sheet {
         // TODO: getColumnStyle
     }
 
+    /**
+     * @summary 열의 너비를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setColumnWidth(1, 100);
+     * console.log(sheet.getColumnWidth(1)); // 100
+     * @param {Number}
+     * @returns {Void}
+     */
     getColumnWidth(columnIndex) {
         const columns = this.xlsx.getNodes("worksheet|cols|col");
         let width;
         _.forEach(columns, column => {
-            if (column["@_min"] == columnIndex) {
+            if (column["@_min"] == columnIndex + 1) {
                 width = column["@_width"];
                 return false;
             }
@@ -212,6 +242,15 @@ export default class Sheet {
         // TODO: getDataValidations
     }
 
+    /**
+     * @summary 열의 너비 기본값을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setDefaultColumnWidth(100);
+     * console.log(sheet.getDefaultColumnWidth()); // 100
+     * @returns {Number}
+     */
     getDefaultColumnWidth() {
         let width = this.xlsx.getNode("worksheet|sheetFormatPr|@_baseColWidth");
         if (width == null) {
@@ -220,8 +259,17 @@ export default class Sheet {
         return width;
     }
 
+    /**
+     * @summary 행의 높이 기본값을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setDefaultRowHeight(50);
+     * console.log(sheet.getDefaultRowHeight()); // 50
+     * @returns {Number}
+     */
     getDefaultRowHeight() {
-        return this.xlsx.getNode("worksheet|sheetFormatPr|@_defaultRowHeight");
+        return Number(this.xlsx.getNode("worksheet|sheetFormatPr|@_defaultRowHeight"));
     }
 
     getDimension() {
@@ -252,8 +300,26 @@ export default class Sheet {
         // TODO: getFirstHeader
     }
 
+    /**
+     * @summary 시트에 존재하는 첫번째 행의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.createRow(4);
+     * sheet.createRow(3);
+     * sheet.createRow(5);
+     * console.log(sheet.getFirstRowNum()); // 3
+     * @returns {Number}
+     */
     getFirstRowNum() {
-        return Number(this.rows.first().value.xmlRow["@_r"]) - 1;
+        let min;
+        this.rows.each((key, value) => {
+            if (min == null) {
+                min = key;
+            }
+            min = Math.min(min, key);
+        });
+        return min;
     }
 
     getFitToPage() {
@@ -296,8 +362,26 @@ export default class Sheet {
         // TODO: getIgnoredErrors
     }
 
+    /**
+     * @summary 시트에 존재하는 마지막 행의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.createRow(4);
+     * sheet.createRow(5);
+     * sheet.createRow(3);
+     * console.log(sheet.getLastRowNum()); // 5
+     * @returns {Number}
+     */
     getLastRowNum() {
-        return Number(this.rows.last().value.xmlRow["@_r"]) - 1;
+        let max;
+        this.rows.each((key, value) => {
+            if (max == null) {
+                max = key;
+            }
+            max = Math.max(max, key);
+        });
+        return max;
     }
 
     getLeftCol() {
@@ -364,8 +448,22 @@ export default class Sheet {
         // TODO: getRepeatingRows
     }
 
+    /**
+     * @summary 시트를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * console.log(row === sheet.getRow(0)); // true
+     * @param {Number}
+     * @returns {Row}
+     */
     getRow(rowIndex) {
-        return this.rows.get(rowIndex);
+        const row = this.rows.get(rowIndex);
+        if (row != null) {
+            return row.value;
+        }
+        return undefined;
     }
 
     getRowBreaks() {
@@ -392,6 +490,15 @@ export default class Sheet {
         // TODO: getSheetConditionalFormatting
     }
 
+    /**
+     * @summary 시트명을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var sheetname = sheet.getSheetName(0);
+     * console.log(sheetname); // Sheet1
+     * @returns {String}
+     */
     getSheetName() {
         return this.xmlSheet["@_name"];
     }
@@ -409,10 +516,7 @@ export default class Sheet {
     }
 
     getTopRow() {
-        if (this.rows.first() != null) {
-            return this.rows.first().value;
-        }
-        return undefined;
+        // TODO: getTopRow
     }
 
     getVerticallyCenter() {
@@ -659,6 +763,17 @@ export default class Sheet {
         // TODO: removeMergedRegions
     }
 
+    /**
+     * @summary 행을 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * sheet.removeRow(0);
+     * console.log(sheet.getRow(0)); // undefined
+     * @param {Number}
+     * @returns {Void}
+     */
     removeRow(rowIndex) {
         this.xlsx.removeNode("worksheet|sheetData|row|" + rowIndex);
         this.rows.remove(rowIndex);
@@ -676,6 +791,15 @@ export default class Sheet {
         // TODO: rowIterator
     }
 
+    /**
+     * @summary 셀을 선택한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setActiveCell("A1");
+     * console.log(sheet.getActiveCell()); // A1
+     * @returns {Cell}
+     */
     setActiveCell(address) {
         this.xlsx.setNode("worksheet|sheetViews|sheetView|selection", {
             "@_activeCell": address,
@@ -707,6 +831,17 @@ export default class Sheet {
         // TODO: setColumnHidden
     }
 
+    /**
+     * @summary 열의 너비를 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setColumnWidth(1, 100);
+     * console.log(sheet.getColumnWidth(1)); // 100
+     * @param {Number}
+     * @param {Number}
+     * @returns {Void}
+     */
     setColumnWidth(columnIndex, width) {
         this.xlsx.afterNodeKey("worksheet|sheetFormatPr", "cols");
         this.xlsx.appendNode("worksheet|cols|col", {
@@ -721,10 +856,30 @@ export default class Sheet {
         // TODO: setDefaultColumnStyle
     }
 
+    /**
+     * @summary 열의 너비 기본값을 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setDefaultColumnWidth(100);
+     * console.log(sheet.getDefaultColumnWidth()); // 100
+     * @param {Number}
+     * @returns {Void}
+     */
     setDefaultColumnWidth(width) {
         this.xlsx.setNode("worksheet|sheetFormatPr|@_baseColWidth", width);
     }
 
+    /**
+     * @summary 행의 높이 기본값을 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setDefaultRowHeight(50);
+     * console.log(sheet.getDefaultRowHeight()); // 50
+     * @param {Number}
+     * @returns {Void}
+     */
     setDefaultRowHeight(height) {
         return this.xlsx.setNode("worksheet|sheetFormatPr|@_defaultRowHeight", height);
     }
@@ -821,6 +976,15 @@ export default class Sheet {
         // TODO: setVerticallyCenter
     }
 
+    /**
+     * @summary 시트의 확대 비율을 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.setZoom(50);
+     * @param {Number}
+     * @returns {Void}
+     */
     setZoom(scale) {
         this.xlsx.setNode("worksheet|sheetViews|sheetView|@_zoomScale", scale);
     }

@@ -4,6 +4,9 @@ import Xlsx from "./Xlsx";
 import Cell from "./Cell";
 import Utils from "./Utils";
 
+/**
+ * @module Row
+ */
 export default class Row {
 
     constructor(option) {
@@ -39,6 +42,16 @@ export default class Row {
         // TODO: copyRowFrom
     }
 
+    /**
+     * @summary 셀을 생성한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createrow(0);
+     * var cell = row.createCell(0);
+     * @param {Number}
+     * @returns {Cell}
+     */
     createCell(cellIndex) {
         const xmlCell = {
             "@_r": Utils.indexToAlphabet(cellIndex + 1) + this.xlsx.getNode("@_r"),
@@ -55,24 +68,87 @@ export default class Row {
         return cell;
     }
 
+    /**
+     * @summary 셀을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * var cell = row.createCell(0);
+     * console.log(cell === row.getCell(0)); // true
+     * @param {Number}
+     * @returns {Cell}
+     */
     getCell(cellIndex) {
-        return this.cells.get(cellIndex).value;
+        const cell = this.cells.get(cellIndex);
+        if (cell != null) {
+            return cell.value;
+        }
+        return undefined;        
     }
 
+    /**
+     * @summary 행에 존재하는 첫번째 셀의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * row.createCell(5);
+     * row.createCell(3);
+     * row.createCell(4);
+     * console.log(row.getFirstCellNum()); // 3
+     * @returns {Number}
+     */
     getFirstCellNum() {
-        return this.cells.first().value.getColumnIndex();
+        let min;
+        this.cells.each(key => {
+            if (min == null) {
+                min = key;
+            }
+            min = Math.min(min, key);
+        });
+        return min;
     }
 
+    /**
+     * @summary 행의 높이를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * row.setHeight(100);
+     * console.log(row.getHeight()); // 100
+     * @returns {Number}
+     */
     getHeight() {
         if (this.xlsx.getNode("@_ht") != null) {
-            return this.xlsx.getNode("@_ht");
+            return Number(this.xlsx.getNode("@_ht"));
         } else {
-            return this.sheet.xlsx.getNode("worksheet|sheetFormatPr|@_defaultRowHeight");
+            return Number(this.sheet.xlsx.getNode("worksheet|sheetFormatPr|@_defaultRowHeight"));
         }
     }
 
+    /**
+     * @summary 행에 존재하는 마지막 셀의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * row.createCell(5);
+     * row.createCell(3);
+     * row.createCell(4);
+     * console.log(row.getLastCellNum()); // 5
+     * @returns {Number}
+     */
     getLastCellNum() {
-        return this.cells.last().value.getColumnIndex();
+        let max;
+        this.cells.each(key => {
+            if (max == null) {
+                max = key;
+            }
+            max = Math.max(max, key);
+        });
+        return max;
     }
 
     getOutlineLevel() {
@@ -83,6 +159,15 @@ export default class Row {
         // TODO: getPhysicalNumberOfCells
     }
 
+    /**
+     * @summary 행의 Index를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(3);
+     * console.log(row.getRowNum()); // 3
+     * @returns {Number}
+     */
     getRowNum() {
         return Number(this.xlsx.getNode("@_r")) - 1;
     }
@@ -91,6 +176,15 @@ export default class Row {
         // TODO: getRowStyle
     }
 
+    /**
+     * @summary 행이 속한 시트 객체를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * console.log(sheet === row.getSheet()); // true
+     * @returns {Number}
+     */
     getSheet() {
         return this.sheet;
     }
@@ -107,16 +201,52 @@ export default class Row {
         // TODO: onDocumentWrite
     }
 
+    /**
+     * @summary 셀을 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * var cell1 = row.createCell(1);
+     * var cell2 = row.createCell(2);
+     * var cell3 = row.createCell(3);
+     * row.removeCell(2);
+     * console.log(row.getCell(2)); // undefined
+     * @param {Number}
+     * @returns {Void}
+     */
     removeCell(cellIndex) {
         this.xlsx.removeNode("c|" + cellIndex);
         this.cells.remove(cellIndex);
     }
 
+    /**
+     * @summary 행의 높이를 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * row.setHeight(50);
+     * console.log(row.getHeight()); // 50
+     * @param {Number}
+     * @returns {Void}
+     */
     setHeight(height) {
-        this.xlsx.setNode("@_ht", height);
+        this.xlsx.setNode("@_ht", height.toString());
         this.xlsx.setNode("@_customHeight", "true");
     }
 
+    /**
+     * @summary 행의 위치를 변경한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(0);
+     * row.setRowNum(5);
+     * console.log(row.getRowNum()); // 5
+     * @param {Number}
+     * @returns {Void}
+     */
     setRowNum(rowIndex) {
         const origin = this.xlsx.getNode("@_r");
         const index = (rowIndex + 1).toString();

@@ -1,0 +1,145 @@
+<?js
+var data = obj;
+var self = this;
+var nativeobject = ["object", "number", "array", "string", "void", "anything"];
+?>
+<?js if (data.kind !== 'module' && !data.hideconstructor) { ?>
+    <?js if (data.kind === 'class' && data.classdesc) { ?>
+    <h2>Constructor</h2>
+    <?js } ?>
+
+    <?js if (data.kind !== 'namespace') { ?>
+    
+    <?js var returnstr = ""; ?>
+    <?js if (data.returns && returns.length) { ?>
+        <?js if (data.returns[0].type) { ?>
+            <?js if (nativeobject.indexOf(data.returns[0].type.names[0].toLowerCase()) == -1) { ?>
+                <?js returnstr += '<a href="module-'; ?>
+                <?js returnstr += data.returns[0].type.names[0]; ?>
+                <?js returnstr += '.html">'; ?>
+                <?js returnstr += data.returns[0].type.names[0]; ?>
+                <?js returnstr += '</a>' ?>
+            <?js } else { ?>
+                <?js returnstr += data.returns[0].type.names[0]; ?>
+            <?js } ?>
+            <?js returnstr += ' ' ?>
+        <?js } ?>
+    <?js } ?>
+    
+    <?js var paramstr = ""; ?>
+    <?js for(var i = 0; i < data.params.length; i++) { ?>
+        <?js paramstr += (i > 0 ? ", ": "") ?>
+        <?js if (nativeobject.indexOf(data.params[i].type.names[0].toLowerCase()) == -1) { ?>
+            <?js paramstr += '<a href="module-'; ?>
+            <?js paramstr += data.params[i].type.names[0]; ?>
+            <?js paramstr += '.html">'; ?>
+            <?js paramstr += data.params[i].type.names[0] ?>
+            <?js paramstr += '</a>'; ?>
+        <?js } else { ?>
+            <?js paramstr += data.params[i].type.names[0] ?>
+        <?js } ?>
+        <?js paramstr += " " + data.params[i].name; ?>
+    <?js } ?>
+    <h4 class="name method-name" id="<?js= id ?>"><?js= returnstr ?><?js= name ?>(<?js= paramstr ?>)</h4>
+    <?js } ?>
+<?js } ?>
+
+<?js if (data.summary) { ?>
+    <?js= summary ?>
+<?js } ?>
+
+<?js if (data.kind !== 'module' && data.description && !data.hideconstructor) { ?>
+<div class="description">
+    <?js= data.description ?>
+</div>
+<?js } ?>
+
+<?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
+    <h5>Extends:</h5>
+    <?js= self.partial('augments.tmpl', data) ?>
+<?js } ?>
+
+<?js if (kind === 'event' && data.type && data.type.names) {?>
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            <?js= self.partial('type.tmpl', data.type.names) ?>
+        </li>
+    </ul>
+<?js } ?>
+
+<?js if (data['this']) { ?>
+    <h5>This:</h5>
+    <ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
+<?js } ?>
+
+<?js= this.partial('details.tmpl', data) ?>
+
+<?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
+<h5>Requires:</h5>
+<ul><?js data.requires.forEach(function(r) { ?>
+    <li><?js= self.linkto(r) ?></li>
+<?js }); ?></ul>
+<?js } ?>
+
+<?js if (data.fires && fires.length) { ?>
+<h5>Fires:</h5>
+<ul><?js fires.forEach(function(f) { ?>
+    <li><?js= self.linkto(f) ?></li>
+<?js }); ?></ul>
+<?js } ?>
+
+<?js if (data.listens && listens.length) { ?>
+<h5>Listens to Events:</h5>
+<ul><?js listens.forEach(function(f) { ?>
+    <li><?js= self.linkto(f) ?></li>
+<?js }); ?></ul>
+<?js } ?>
+
+<?js if (data.listeners && listeners.length) { ?>
+<h5>Listeners of This Event:</h5>
+<ul><?js listeners.forEach(function(f) { ?>
+    <li><?js= self.linkto(f) ?></li>
+<?js }); ?></ul>
+<?js } ?>
+
+<?js if (data.modifies && modifies.length) {?>
+<h5>Modifies:</h5>
+<?js if (modifies.length > 1) { ?><ul><?js
+    modifies.forEach(function(m) { ?>
+        <li><?js= self.partial('modifies.tmpl', m) ?></li>
+    <?js });
+?></ul><?js } else {
+    modifies.forEach(function(m) { ?>
+        <?js= self.partial('modifies.tmpl', m) ?>
+    <?js });
+} } ?>
+
+<?js if (data.exceptions && exceptions.length) { ?>
+<h5>Throws:</h5>
+<?js if (exceptions.length > 1) { ?><ul><?js
+    exceptions.forEach(function(r) { ?>
+        <li><?js= self.partial('exceptions.tmpl', r) ?></li>
+    <?js });
+?></ul><?js } else {
+    exceptions.forEach(function(r) { ?>
+        <?js= self.partial('exceptions.tmpl', r) ?>
+    <?js });
+} } ?>
+
+<?js if (data.yields && yields.length) { ?>
+<h5>Yields:</h5>
+<?js if (yields.length > 1) { ?><ul><?js
+    yields.forEach(function(r) { ?>
+        <li><?js= self.partial('returns.tmpl', r) ?></li>
+    <?js });
+?></ul><?js } else {
+    yields.forEach(function(r) { ?>
+        <?js= self.partial('returns.tmpl', r) ?>
+    <?js });
+} } ?>
+
+<?js if (data.examples && examples.length) { ?>
+    <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
+    <?js= this.partial('examples.tmpl', examples) ?>
+<?js } ?>
