@@ -1,10 +1,10 @@
 {
   "name": "javascript-xlsx",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode production && webpack --mode production --env ie11",
+    "build": "webpack --mode production && webpack --mode production --env ie11 && npm run jsdoc",
     "jsdoc": "jsdoc -c jsdoc.conf README.md"
   },
   "devDependencies": {

@@ -89,12 +89,40 @@ export default class Sheet {
         // TODO: createDrawingPatriarch
     }
 
+    /**
+     * @summary 틀 고정을 실행한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.createFreezePane(5, 7);
+     * sheet.createFreezePane(0, 0); // Clear freezePane
+     * @param {Number}
+     * @param {Number}
+     * @returns {Void}
+     */
     createFreezePane(colSplit, rowSplit) {
-        // TODO: createFreezePane
-    }
-
-    createFreezePane(colSplit, rowSplit, leftmostColumn, topRow) {
-        // TODO: createFreezePane
+        if (!colSplit && !rowSplit) {
+            this.xlsx.removeNode("worksheet|sheetViews|sheetView|pane");
+            this.xlsx.removeNode("worksheet|sheetViews|sheetView|selection");
+            return;
+        }
+        const pane = {
+            "@_state": "frozen",
+            "@_topLeftCell": Utils.indexToAlphabet(colSplit + 1) + (rowSplit + 1),
+            "@_activePane": "bottomLeft"
+        };
+        if (colSplit > 0) {
+            pane["@_xSplit"] = Number(colSplit).toFixed(1);
+        }
+        if (rowSplit > 0) {
+            pane["@_ySplit"] = Number(rowSplit).toFixed(1);
+        }
+        this.xlsx.setNode("worksheet|sheetViews|sheetView|pane", pane, false);
+        
+        const selection = {
+            "@_pane": "bottomLeft"
+        };
+        this.xlsx.setNode("worksheet|sheetViews|sheetView|selection", selection, false);
     }
 
     createPivotTable(source, position) {

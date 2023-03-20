@@ -44,7 +44,7 @@ workbook.write("example.xlsx");
 
 ### API
 
-<a href="https://tcpip147.github.io/javascript-xlsx/index.html">API Reference</a>를 참조하십시요.
+<a href="https://tcpip147.github.io/javascript-xlsx/index.html" target="_blank">API Reference</a>를 참조하십시요.
 
 <h3 id="cellStyleAttributes">CellStyle Attributes</h3>
 
