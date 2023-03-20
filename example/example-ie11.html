@@ -22,25 +22,29 @@
     <script>
         var workbook = JavascriptXlsx.createWorkbook();
         var sheet = workbook.createSheet("Sheet1");
-
-        for (var r = 0; r < 10; r++) {
-            var row = sheet.createRow(r);
-            var style = workbook.createCellStyle({
-                font: {
-                    size: 10 + r
+        var row = sheet.createRow(0);
+        var cell = row.createCell(0);
+        var style = workbook.createCellStyle({
+            font: {
+                size: 20
+            },
+            fill: {
+                gradient: {
+                    start: "FF0000",
+                    end: "00FF00",
+                    preset: "center"
                 }
-            });
-            for (var c = 0; c < 5; c++) {
-                var cell = row.createCell(c);
-                cell.setCellValue("row" + r + " : col" + c);
-                cell.setCellStyle(style);
+            },
+            border: {
+                left: {
+                    style: "thin",
+                    color: "FF0000"
+                }
             }
-        }
-
-        for (var c = 0; c < 5; c++) {
-            sheet.setColumnWidth(c, 30);
-        }
-
+        });
+        cell.setCellValue("Hello");
+        cell.setCellStyle(style);
+         
         document.getElementById("download").addEventListener("click", function () {
             workbook.write("example.xlsx");
         });

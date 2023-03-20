@@ -28,6 +28,13 @@
             font: {
                 size: 20
             },
+            fill: {
+                gradient: {
+                    start: "FF0000",
+                    end: "00FF00",
+                    preset: "center"
+                }
+            },
             border: {
                 left: {
                     style: "thin",
@@ -37,7 +44,6 @@
         });
         cell.setCellValue("Hello");
         cell.setCellStyle(style);
-        console.log(cell.getCellStyle() === style); // true
          
         document.getElementById("download").addEventListener("click", function () {
             workbook.write("example.xlsx");

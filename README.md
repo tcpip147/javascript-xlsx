@@ -98,7 +98,21 @@ workbook.write("example.xlsx");
         },
         /* 채우기 효과 */
         gradient : {
-            // 미구현
+            start: number,
+            end: number,
+            preset: horizontal
+                  | horizontalJustify
+                  | vertical
+                  | verticalJustify
+                  | diagonalUp
+                  | diagonalUpJustify
+                  | diagonalDown
+                  | diagonalDownJustify
+                  | edgeLeftTop
+                  | edgeRightTop
+                  | edgeLeftBottom
+                  | edgeRightBottom
+                  | center
         }
     },
     /* 테두리 */

@@ -109,7 +109,90 @@ export default class CellStyle {
                     style["patternFill"]["@_patternType"] = fill[key]["type"];
                 }
             } else if (key == "gradient") {
+                style["gradientFill"] = {};
+                style["gradientFill"]["stop"] = [];
 
+                if (!fill[key]["start"] || !fill[key]["end"] || !fill[key]["preset"]) {
+                    throw "Gradient style attributes is not sufficient";
+                }
+
+                if (fill[key]["preset"] == "horizontal") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 90;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "horizontalJustify") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 90;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 0.5 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "vertical") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "verticalJustify") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 0.5 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "diagonalUp") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 45;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "diagonalUpJustify") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 45;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 0.5 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "diagonalDown") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 135;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "diagonalDownJustify") {
+                    style["gradientFill"]["@_type"] = "linear";
+                    style["gradientFill"]["@_degree"] = 135;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 0.5 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "edgeLeftTop") {
+                    style["gradientFill"]["@_type"] = "path";
+                    style["gradientFill"]["@_left"] = 0;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "edgeRightTop") {
+                    style["gradientFill"]["@_type"] = "path";
+                    style["gradientFill"]["@_left"] = 1;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "edgeLeftBottom") {
+                    style["gradientFill"]["@_type"] = "path";
+                    style["gradientFill"]["@_left"] = 0;
+                    style["gradientFill"]["@_top"] = 1;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "edgeRightBottom") {
+                    style["gradientFill"]["@_type"] = "path";
+                    style["gradientFill"]["@_left"] = 1;
+                    style["gradientFill"]["@_top"] = 1;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                } else if (fill[key]["preset"] == "center") {
+                    style["gradientFill"]["@_type"] = "path";
+                    style["gradientFill"]["@_left"] = 0.5;
+                    style["gradientFill"]["@_right"] = 0.5;
+                    style["gradientFill"]["@_top"] = 0.5;
+                    style["gradientFill"]["@_bottom"] = 0.5;
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["start"] }, "@_position": 0 });
+                    style["gradientFill"]["stop"].push({ color: { "@_rgb": fill[key]["end"] }, "@_position": 1 });
+                }
+            }
+
+            if (style["patternFill"] && style["gradientFill"]) {
+                delete style["patternFill"];
             }
         }
         this.workbook.xlsx.appendNode("xl/styles.xml|styleSheet|fills|fill", style);
