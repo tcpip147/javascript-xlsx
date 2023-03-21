@@ -25,4 +25,16 @@ export default class Utils {
         }
         return alphabet;
     };
+
+    static regionToIndices(region) {
+        const addresses = region.split(":");
+        const start = Utils.addressToIndices(addresses[0]);
+        const end = Utils.addressToIndices(addresses[1]);
+        return _.concat(start, end);
+    }
+
+    static addressToIndices(address) {
+        const match = address.match(/([A-Z]+)([0-9]+)/);
+        return [Number(match[2] - 1), Number(Utils.alphabetToIndex(match[1]) - 1)];
+    }
 }

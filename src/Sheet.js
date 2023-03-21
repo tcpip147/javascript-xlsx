@@ -50,11 +50,12 @@ export default class Sheet {
      * @example
      * var workbook = JavascriptXlsx.createWorkbook();
      * var sheet = workbook.createSheet("Sheet1");
-     * sheet.addMergedRegion("A1:B3");
+     * sheet.addMergedRegion(0, 0, 2, 3);
      * @param {String}
      * @returns {Void}
      */
-    addMergedRegion(region) {
+    addMergedRegion(startRow, startCol, endRow, endCol) {
+        const region = Utils.indexToAlphabet(startCol + 1) + (startRow + 1) + ":" + Utils.indexToAlphabet(endCol + 1) + (endRow + 1);
         this.xlsx.afterNodeKey("worksheet|sheetData", "mergeCells");
         this.xlsx.appendNode("worksheet|mergeCells|mergeCell", {
             "@_ref": region
@@ -420,12 +421,42 @@ export default class Sheet {
         // TODO: getMargin
     }
 
+    /**
+     * @summary 병합된 셀을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.addMergedRegion(0, 0, 2, 3);
+     * console.log(sheet.getMergedRegion(0)); // [0, 0, 2, 3]
+     * @returns {Array}
+     */
     getMergedRegion(index) {
-        // TODO: getMergedRegion
+        const mergeCells = this.xlsx.getNodes("worksheet|mergeCells|mergeCell");
+        if (mergeCells[index] == null) {
+            return undefined;
+        }
+        const region = mergeCells[index]["@_ref"];
+        return Utils.regionToIndices(region);
     }
 
+    /**
+     * @summary 병합된 셀을 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.addMergedRegion(0, 0, 2, 2);
+     * sheet.addMergedRegion(3, 3, 5, 5);
+     * console.log(sheet.getMergedRegions()); // [[0, 0, 2, 2], [3, 3, 5, 5]]
+     * @returns {Array}
+     */
     getMergedRegions() {
-        // TODO: getMergedRegions
+        const mergeCells = this.xlsx.getNodes("worksheet|mergeCells|mergeCell");
+        const res = [];
+        _.each(mergeCells, mergeCell => {
+            const region = mergeCell["@_ref"];
+            res.push(Utils.regionToIndices(region));
+        });
+        return res;
     }
 
     getNumberOfComments() {
@@ -783,12 +814,43 @@ export default class Sheet {
         // TODO: removeHyperlink
     }
 
+    /**
+     * @summary 병합된 셀을 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.addMergedRegion(0, 0, 2, 3);
+     * sheet.removeMergedRegion(0);
+     * console.log(sheet.getMergedRegion(0)); // undefined
+     * @returns {Void}
+     */
     removeMergedRegion(index) {
-        // TODO: removeMergedRegion
+        const mergeCells = this.xlsx.getNodes("worksheet|mergeCells|mergeCell");
+        mergeCells.splice(index, 1);
+        this.xlsx.setNode("worksheet|mergeCells|mergeCell", mergeCells);
+        if (mergeCells.length == 0) {
+            this.xlsx.removeNode("worksheet|mergeCells");
+        }
     }
 
+    /**
+     * @summary 병합된 셀 여러개를 동시에 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * sheet.addMergedRegion(0, 0, 1, 1);
+     * sheet.addMergedRegion(2, 2, 3, 3);
+     * sheet.addMergedRegion(4, 4, 5, 5);
+     * sheet.removeMergedRegions([1, 0]);
+     * console.log(sheet.getMergedRegion(0)); // [4, 4, 5, 5]
+     * @param {Array}
+     * @returns {Void}
+     */
     removeMergedRegions(indices) {
-        // TODO: removeMergedRegions
+        indices.sort();
+        _.eachRight(indices, index => {
+            this.removeMergedRegion(index);
+        });
     }
 
     /**

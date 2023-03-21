@@ -118,7 +118,7 @@
         
         
     
-    <td class="name"><a href="#addMergedRegion">addMergedRegion</a>(String region)</td>
+    <td class="name"><a href="#addMergedRegion">addMergedRegion</a>(String startRow)</td>
     <td>
     
         셀 병합을 실행한다.
@@ -360,6 +360,56 @@
         
             
                 
+                    Array
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getMergedRegion">getMergedRegion</a>()</td>
+    <td>
+    
+        병합된 셀을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Array
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getMergedRegions">getMergedRegions</a>()</td>
+    <td>
+    
+        병합된 셀을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
                     <a href="module-Row.html">Row</a>
                 
             
@@ -402,6 +452,62 @@
     <td>
     
         시트명을 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#removeMergedRegion">removeMergedRegion</a>()</td>
+    <td>
+    
+        병합된 셀을 삭제한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#removeMergedRegions">removeMergedRegions</a>(Array indices)</td>
+    <td>
+    
+        병합된 셀 여러개를 동시에 삭제한다.
     
     </td>
     
@@ -621,7 +727,7 @@
         
         
     
-    <h4 class="name method-name" id="addMergedRegion">Void addMergedRegion(String region)</h4>
+    <h4 class="name method-name" id="addMergedRegion">Void addMergedRegion(String startRow)</h4>
     
 
 
@@ -693,7 +799,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion("A1:B3");</code></pre>
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion(0, 0, 2, 3);</code></pre>
 
 
 
@@ -1497,6 +1603,196 @@
         
             
                 
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getMergedRegion">Array getMergedRegion()</h4>
+    
+
+
+
+    병합된 셀을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion(0, 0, 2, 3);console.log(sheet.getMergedRegion(0)); // [0, 0, 2, 3]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getMergedRegions">Array getMergedRegions()</h4>
+    
+
+
+
+    병합된 셀을 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion(0, 0, 2, 2);sheet.addMergedRegion(3, 3, 5, 5);console.log(sheet.getMergedRegions()); // [[0, 0, 2, 2], [3, 3, 5, 5]]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
                 
                 
                 
@@ -1682,6 +1978,202 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var sheetname = sheet.getSheetName(0);console.log(sheetname); // Sheet1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="removeMergedRegion">Void removeMergedRegion()</h4>
+    
+
+
+
+    병합된 셀을 삭제한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion(0, 0, 2, 3);sheet.removeMergedRegion(0);console.log(sheet.getMergedRegion(0)); // undefined</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="removeMergedRegions">Void removeMergedRegions(Array indices)</h4>
+    
+
+
+
+    병합된 셀 여러개를 동시에 삭제한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");sheet.addMergedRegion(0, 0, 1, 1);sheet.addMergedRegion(2, 2, 3, 3);sheet.addMergedRegion(4, 4, 5, 5);sheet.removeMergedRegions([1, 0]);console.log(sheet.getMergedRegion(0)); // [4, 4, 5, 5]</code></pre>
 
 
 

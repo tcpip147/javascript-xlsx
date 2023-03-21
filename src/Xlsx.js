@@ -160,6 +160,7 @@ export default class Xlsx {
                         }
                     }
                 } else {
+                    console.log(node);
                     delete node[p];
                 }
             } else {
