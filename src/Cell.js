@@ -1,3 +1,4 @@
+import { _ } from "core-js";
 import Utils from "./Utils";
 import Xlsx from "./Xlsx";
 
@@ -11,7 +12,7 @@ export default class Cell {
         this.sheet = option.sheet;
         this.row = option.row;
         this.xmlCell = option.xmlCell;
-        
+
         this.xlsx = new Xlsx(this.xmlCell);
         this.style;
     }
@@ -254,6 +255,45 @@ export default class Cell {
     }
 
     setHyperlink(hyperlink) {
-        // TODO: setHyperlink
+        if (this.sheet.xmlRel["@_Target"].lastIndexOf("/") > -1) {
+            const filename = this.sheet.xmlRel["@_Target"].substring(this.sheet.xmlRel["@_Target"].lastIndexOf("/") + 1);
+            if (this.workbook.xlsx.getNode("xl/worksheets/" + filename + ".rels") == null) {
+                this.workbook.xlsx.setNode("xl/worksheets/" + filename + ".rels|?xml", {
+                    "@_version": "1.0",
+                    "@_encoding": "UTF-8",
+                    "@_standalone": "no"
+                });
+            }
+
+            if (this.workbook.xlsx.getNode("xl/worksheets/" + filename + ".rels|Relationships|@_xmlns") == null) {
+                this.workbook.xlsx.appendNode("xl/worksheets/" + filename + ".rels|Relationships", {
+                    "@_xmlns": "http://schemas.openxmlformats.org/package/2006/relationships"
+                });
+            }
+
+            const rels = this.workbook.xlsx.getNodes("xl/worksheets/" + filename + ".rels|Relationships|Relationship");
+            let maxRId = 0;
+            _.each(rels, rel => {
+                const match = rel["@_Id"].match(/rId([0-9]+)/);
+                if (match) {
+                    maxRId = Math.max(maxRId, Number(match[1]));
+                }
+            });
+
+            this.workbook.xlsx.appendNode("xl/worksheets/" + filename + ".rels|Relationships|Relationship", {
+                "@_Id": "rId" + (maxRId + 1),
+                "@_Target": hyperlink.address,
+                "@_TargetMode": "External",
+                "@_Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+            });
+
+            //
+            
+            this.sheet.xlsx.afterNodeKey("worksheet|sheetData", "hyperlinks");
+            this.sheet.xlsx.appendNode("worksheet|hyperlinks|hyperlink", {
+                "@_ref": this.xlsx.getNode("@_r"),
+                "@_r:id": "rId" + (maxRId + 1)
+            });
+        }
     }
 }

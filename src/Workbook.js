@@ -9,6 +9,7 @@ import Xlsx from './Xlsx';
 import IndexedLinkedList from './IndexedLinkedList';
 import Sheet from './Sheet';
 import CellStyle from './CellStyle';
+import Hyperlink from './Hyperlink';
 
 /**
  * @module Workbook
@@ -173,6 +174,10 @@ export default class Workbook {
 
     createEvaluationWorkbook() {
         // TODO: createEvaluationWorkbook
+    }
+
+    createHyperlink(link) {
+        return new Hyperlink(link);
     }
 
     createName() {
