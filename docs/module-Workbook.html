@@ -389,6 +389,43 @@
         
         
     
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setSheetName">setSheetName</a>(Number index, String name)</td>
+    <td>
+    
+        시트명을 바꾼다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
     <td class="name"><a href="#write">write</a>(String filename)</td>
     <td>
     
@@ -1315,6 +1352,113 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();workbook.createSheet("Sheet1");workbook.createSheet("Sheet2");workbook.setActiveSheet(1);var index = workbook.getActiveSheetIndex();console.log(index); // 1</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setSheetName">Void setSheetName(Number index, String name)</h4>
+    
+
+
+
+    시트명을 바꾼다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet1 = workbook.createSheet("Sheet1");var sheet2 = workbook.createSheet("Sheet2");workbook.setSheetName(1, "Sheet3");console.log(workbook.getSheetName(1)); // Sheet3</code></pre>
 
 
 

@@ -612,8 +612,21 @@ export default class Workbook {
         // TODO: setSheetHidden
     }
 
+    /**
+     * @summary 시트명을 바꾼다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet1 = workbook.createSheet("Sheet1");
+     * var sheet2 = workbook.createSheet("Sheet2");
+     * workbook.setSheetName(1, "Sheet3");
+     * console.log(workbook.getSheetName(1)); // Sheet3
+     * @param {Number}
+     * @param {String}
+     * @returns {Void}
+     */
     setSheetName(index, name) {
-        // TODO: setSheetName
+        const sheet = this.getSheetAt(index);
+        sheet.xmlSheet["@_name"] = name;
     }
 
     setSheetOrder(name, index) {
@@ -678,6 +691,8 @@ export default class Workbook {
      * @returns {Void}
      */
     write(filename) {
+        this.xlsx.setNode("docProps/core.xml|cp:coreProperties|dcterms:created|#text", dayjs().toISOString());
+
         this.sheets.each((sheetname, sheet) => {
             let minRow;
             let minCol;
