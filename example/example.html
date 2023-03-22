@@ -45,12 +45,6 @@
         cell.setCellValue("Hello");
         cell.setCellStyle(style);
 
-        var hyperlink = workbook.createHyperlink({
-            type: "URL",
-            address: "www.naver.com"
-        });
-        cell.setHyperlink(hyperlink);
-         
         document.getElementById("download").addEventListener("click", function () {
             workbook.write("example.xlsx");
         });

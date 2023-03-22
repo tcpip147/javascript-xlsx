@@ -99,8 +99,43 @@ export default class Cell {
         return Utils.alphabetToIndex(this.xlsx.getNode("@_r").replace(/[0-9]+/, "")) - 1;
     }
 
+    /**
+     * @summary 셀에 지정된 하이퍼링크를 반환한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(1);
+     * var cell = row.createCell(3);
+     * cell.setCellValue("link");
+     * cell.setHyperlink({
+     *     type: "URL",
+     *     address: "https://www.github.com"
+     * });
+     * console.log(cell.getHyperlink()); // { type: "URL", address: "https://www.github.com" }
+     * @returns {Object}
+     */
     getHyperlink() {
-        // TODO: getHyperlink
+        const ref = this.getReference();
+        const hyperlinks = this.sheet.xlsx.getNodes("worksheet|hyperlinks");
+        let res;
+        _.each(hyperlinks, h => {
+            if (ref == h["hyperlink"]["@_ref"]) {
+                const rId = h["hyperlink"]["@_r:id"];
+                const filename = this.sheet.xmlRel["@_Target"].substring(this.sheet.xmlRel["@_Target"].lastIndexOf("/") + 1);
+                const rels = this.workbook.xlsx.getNodes("xl/worksheets/_rels/" + filename + ".rels|Relationships|Relationship");
+                _.each(rels, rel => {
+                    if (rId == rel["@_Id"]) {
+                        res = {
+                            type: "URL",
+                            address: rel["@_Target"]
+                        }
+                    }
+                    return false;
+                });
+                return false;
+            }
+        });
+        return res;
     }
 
     /**
@@ -167,8 +202,28 @@ export default class Cell {
         // TODO: removeCellComment
     }
 
+    /**
+     * @summary 셀에 지정된 하이퍼링크를 삭제한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(1);
+     * var cell = row.createCell(3);
+     * cell.setCellValue("link");
+     * cell.setHyperlink({
+     *     type: "URL",
+     *     address: "https://www.github.com"
+     * });
+     * cell.removeHyperlink();
+     * @returns {Void}
+     */
     removeHyperlink() {
-        // TODO: removeHyperlink
+        const ref = this.getReference();
+        this.sheet.xlsx.removeNode("worksheet|hyperlinks|hyperlink", { "@_ref": ref });
+        const hyperlinks = this.sheet.xlsx.getNodes("worksheet|hyperlinks|hyperlink");
+        if (hyperlinks.length == 0) {
+            this.sheet.xlsx.removeNode("worksheet|hyperlinks");
+        }
     }
 
     /**
@@ -254,24 +309,40 @@ export default class Cell {
         }
     }
 
+    /**
+     * @summary 셀에 하이퍼링크를 추가한다.
+     * @example
+     * var workbook = JavascriptXlsx.createWorkbook();
+     * var sheet = workbook.createSheet("Sheet1");
+     * var row = sheet.createRow(1);
+     * var cell = row.createCell(3);
+     * cell.setCellValue("link");
+     * cell.setHyperlink({
+     *     type: "URL",
+     *     address: "https://www.github.com"
+     * });
+     * console.log(cell.getHyperlink()); // { type: 'URL', address: 'https://www.github.com' }
+     * @param {Object}
+     * @returns {Void}
+     */
     setHyperlink(hyperlink) {
         if (this.sheet.xmlRel["@_Target"].lastIndexOf("/") > -1) {
             const filename = this.sheet.xmlRel["@_Target"].substring(this.sheet.xmlRel["@_Target"].lastIndexOf("/") + 1);
-            if (this.workbook.xlsx.getNode("xl/worksheets/" + filename + ".rels") == null) {
-                this.workbook.xlsx.setNode("xl/worksheets/" + filename + ".rels|?xml", {
+            if (this.workbook.xlsx.getNode("xl/worksheets/_rels/" + filename + ".rels") == null) {
+                this.workbook.xlsx.setNode("xl/worksheets/_rels/" + filename + ".rels|?xml", {
                     "@_version": "1.0",
                     "@_encoding": "UTF-8",
                     "@_standalone": "no"
                 });
             }
 
-            if (this.workbook.xlsx.getNode("xl/worksheets/" + filename + ".rels|Relationships|@_xmlns") == null) {
-                this.workbook.xlsx.appendNode("xl/worksheets/" + filename + ".rels|Relationships", {
+            if (this.workbook.xlsx.getNode("xl/worksheets/_rels/" + filename + ".rels|Relationships|@_xmlns") == null) {
+                this.workbook.xlsx.appendNode("xl/worksheets/_rels/" + filename + ".rels|Relationships", {
                     "@_xmlns": "http://schemas.openxmlformats.org/package/2006/relationships"
                 });
             }
 
-            const rels = this.workbook.xlsx.getNodes("xl/worksheets/" + filename + ".rels|Relationships|Relationship");
+            const rels = this.workbook.xlsx.getNodes("xl/worksheets/_rels/" + filename + ".rels|Relationships|Relationship");
             let maxRId = 0;
             _.each(rels, rel => {
                 const match = rel["@_Id"].match(/rId([0-9]+)/);
@@ -280,7 +351,7 @@ export default class Cell {
                 }
             });
 
-            this.workbook.xlsx.appendNode("xl/worksheets/" + filename + ".rels|Relationships|Relationship", {
+            this.workbook.xlsx.appendNode("xl/worksheets/_rels/" + filename + ".rels|Relationships|Relationship", {
                 "@_Id": "rId" + (maxRId + 1),
                 "@_Target": hyperlink.address,
                 "@_TargetMode": "External",
@@ -288,7 +359,11 @@ export default class Cell {
             });
 
             //
-            
+
+            if (this.sheet.xlsx.getNode("worksheet|@_xmlns:r") == null) {
+                this.sheet.xlsx.appendNode("worksheet|@_xmlns:r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            }
+
             this.sheet.xlsx.afterNodeKey("worksheet|sheetData", "hyperlinks");
             this.sheet.xlsx.appendNode("worksheet|hyperlinks|hyperlink", {
                 "@_ref": this.xlsx.getNode("@_r"),

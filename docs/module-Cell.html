@@ -180,6 +180,31 @@
         
             
                 
+                    Object
+                
+            
+        
+    </td>
+    
+    
+    <td class="name"><a href="#getHyperlink">getHyperlink</a>()</td>
+    <td>
+    
+        셀에 지정된 하이퍼링크를 반환한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
                     String
                 
             
@@ -287,6 +312,31 @@
     </td>
     
     
+    <td class="name"><a href="#removeHyperlink">removeHyperlink</a>()</td>
+    <td>
+    
+        셀에 지정된 하이퍼링크를 삭제한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
     <td class="name"><a href="#setAsActiveCell">setAsActiveCell</a>()</td>
     <td>
     
@@ -353,6 +403,37 @@
     <td>
     
         셀의 값을 변경한다.
+    
+    </td>
+    
+
+            </tr>
+            
+            <tr>
+                
+
+    
+    <td>
+        
+            
+                
+                    Void
+                
+            
+        
+    </td>
+    
+    
+        
+        
+            
+        
+        
+    
+    <td class="name"><a href="#setHyperlink">setHyperlink</a>(Object hyperlink)</td>
+    <td>
+    
+        셀에 하이퍼링크를 추가한다.
     
     </td>
     
@@ -647,6 +728,101 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(3);console.log(cell.getColumnIndex()); // 3</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+    <h4 class="name method-name" id="getHyperlink">Object getHyperlink()</h4>
+    
+
+
+
+    셀에 지정된 하이퍼링크를 반환한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);cell.setCellValue("link");cell.setHyperlink({    type: "URL",    address: "https://www.github.com"});console.log(cell.getHyperlink()); // { type: "URL", address: "https://www.github.com" }</code></pre>
 
 
 
@@ -1057,6 +1233,101 @@
     
     
     
+    <h4 class="name method-name" id="removeHyperlink">Void removeHyperlink()</h4>
+    
+
+
+
+    셀에 지정된 하이퍼링크를 삭제한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);cell.setCellValue("link");cell.setHyperlink({    type: "URL",    address: "https://www.github.com"});cell.removeHyperlink();</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
     <h4 class="name method-name" id="setAsActiveCell">Void setAsActiveCell()</h4>
     
 
@@ -1332,6 +1603,107 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(0);var cell = row.createCell(0);cell.setCellValue("Hello");console.log(cell.getCellValue()); // Hello</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    
+    
+    
+        
+            
+                
+            
+            
+        
+    
+    
+    
+    
+        
+        
+            
+        
+        
+    
+    <h4 class="name method-name" id="setHyperlink">Void setHyperlink(Object hyperlink)</h4>
+    
+
+
+
+    셀에 하이퍼링크를 추가한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var workbook = JavascriptXlsx.createWorkbook();var sheet = workbook.createSheet("Sheet1");var row = sheet.createRow(1);var cell = row.createCell(3);cell.setCellValue("link");cell.setHyperlink({    type: "URL",    address: "https://www.github.com"});console.log(cell.getHyperlink()); // { type: 'URL', address: 'https://www.github.com' }</code></pre>
 
 
 

@@ -75,7 +75,7 @@ export default class DefaultXlsx {
         "xl/workbook.xml": `
             <?xml version="1.0" encoding="UTF-8"?>
             <workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-                <workbookPr date1904="true"/>
+                <workbookPr date1904="false"/>
                 <bookViews>
                     <workbookView activeTab="0"/>
                 </bookViews>

@@ -9,7 +9,7 @@ import Xlsx from './Xlsx';
 import IndexedLinkedList from './IndexedLinkedList';
 import Sheet from './Sheet';
 import CellStyle from './CellStyle';
-import Hyperlink from './Hyperlink';
+import Utils from './Utils';
 
 /**
  * @module Workbook
@@ -175,11 +175,7 @@ export default class Workbook {
     createEvaluationWorkbook() {
         // TODO: createEvaluationWorkbook
     }
-
-    createHyperlink(link) {
-        return new Hyperlink(link);
-    }
-
+    
     createName() {
         // TODO: createName
     }
@@ -682,6 +678,28 @@ export default class Workbook {
      * @returns {Void}
      */
     write(filename) {
+        this.sheets.each((sheetname, sheet) => {
+            let minRow;
+            let minCol;
+            let maxRow = 0;
+            let maxCol = 0;
+            sheet.rows.each((rowIndex, row) => {
+                if (minRow == null) {
+                    minRow = rowIndex;
+                }
+                row.cells.each((colIndex, cell) => {
+                    if (minCol == null) {
+                        minCol = colIndex;
+                    }
+                    maxCol = Math.max(colIndex, maxCol);
+                });
+                maxRow = Math.max(rowIndex, maxRow);
+            });
+
+            const dimension = Utils.indexToAlphabet(minCol + 1) + (minRow + 1) + ":" + Utils.indexToAlphabet(maxCol + 1) + (maxRow + 1);
+            sheet.xlsx.setNode("worksheet|dimension|@_ref", dimension);
+        });
+
         const contents = this.#build();
         const zip = new JSZip();
         for (let key in contents) {
