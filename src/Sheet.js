@@ -51,7 +51,10 @@ export default class Sheet {
      * var workbook = JavascriptXlsx.createWorkbook();
      * var sheet = workbook.createSheet("Sheet1");
      * sheet.addMergedRegion(0, 0, 2, 3);
-     * @param {String}
+     * @param {Number}
+     * @param {Number}
+     * @param {Number}
+     * @param {Number}
      * @returns {Void}
      */
     addMergedRegion(startRow, startCol, endRow, endCol) {
