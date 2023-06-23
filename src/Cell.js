@@ -290,22 +290,24 @@ export default class Cell {
      * @returns {Void}
      */
     setCellValue(value) {
-        if (isNaN(value)) {
-            if (value.substring(0, 1) == "=") {
-                this.xlsx.setNode("f", value);
-            } else {
-                if (this.workbook.sharedStrings[value] == null) {
-                    this.workbook.xlsx.appendNode("xl/sharedStrings.xml|sst|si", {
-                        "t": value
-                    });
-                    this.workbook.sharedStrings[value] = this.workbook.xlsx.getNodes("xl/sharedStrings.xml|sst|si").length - 1;
+        if (value != null) {
+            if (isNaN(value)) {
+                if (value.substring(0, 1) == "=") {
+                    this.xlsx.setNode("f", value);
+                } else {
+                    if (this.workbook.sharedStrings[value] == null) {
+                        this.workbook.xlsx.appendNode("xl/sharedStrings.xml|sst|si", {
+                            "t": value
+                        });
+                        this.workbook.sharedStrings[value] = this.workbook.xlsx.getNodes("xl/sharedStrings.xml|sst|si").length - 1;
+                    }
+                    this.xlsx.setNode("@_t", "s");
+                    this.xlsx.setNode("v", this.workbook.sharedStrings[value].toString());
                 }
-                this.xlsx.setNode("@_t", "s");
-                this.xlsx.setNode("v", this.workbook.sharedStrings[value].toString());
+            } else {
+                this.xlsx.setNode("@_t", "n");
+                this.xlsx.setNode("v", value);
             }
-        } else {
-            this.xlsx.setNode("@_t", "n");
-            this.xlsx.setNode("v", value);
         }
     }
 

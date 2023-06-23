@@ -12,6 +12,7 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, "dist"),
             clean: true
         },
+        devtool: "source-map",
         module: {
             rules: [
                 {
